@@ -1,0 +1,1514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>SafeNode — Intelligent Physical Safety</title>
+
+  <meta
+    name="description"
+    content="SafeNode is developing hardware-based technology for emergency situations where a person may be unable to ask for help."
+  >
+
+  <style>
+    :root {
+      --bg: #07111f;
+      --bg-light: #0d1b2e;
+      --card: rgba(255,255,255,0.055);
+      --border: rgba(255,255,255,0.10);
+      --text: #f4f7fb;
+      --muted: #a8b5c5;
+      --green: #65e6bd;
+      --blue: #7dd3fc;
+      --max-width: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(
+          circle at 80% 5%,
+          rgba(101,230,189,0.13),
+          transparent 28%
+        ),
+        radial-gradient(
+          circle at 10% 30%,
+          rgba(125,211,252,0.08),
+          transparent 25%
+        ),
+        var(--bg);
+
+      color: var(--text);
+
+      font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Roboto,
+        Helvetica,
+        Arial,
+        sans-serif;
+
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(
+        var(--max-width),
+        calc(100% - 40px)
+      );
+
+      margin: 0 auto;
+    }
+
+    /* ---------------- NAVIGATION ---------------- */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      backdrop-filter: blur(18px);
+
+      background: rgba(7,17,31,0.75);
+
+      border-bottom:
+        1px solid rgba(255,255,255,0.07);
+    }
+
+    .nav-inner {
+      height: 72px;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-size: 21px;
+      font-weight: 800;
+      letter-spacing: -0.04em;
+    }
+
+    .logo span {
+      color: var(--green);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 28px;
+
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+    .nav-links a {
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--text);
+    }
+
+    /* ---------------- HERO ---------------- */
+
+    .hero {
+      min-height: 720px;
+
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+
+      align-items: center;
+
+      gap: 70px;
+
+      padding:
+        100px 0
+        90px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+
+      align-items: center;
+
+      gap: 9px;
+
+      color: var(--green);
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.15em;
+    }
+
+    .dot {
+      width: 7px;
+      height: 7px;
+
+      border-radius: 50%;
+
+      background: var(--green);
+
+      box-shadow:
+        0 0 18px
+        rgba(101,230,189,0.8);
+    }
+
+    h1 {
+      font-size:
+        clamp(54px, 8vw, 92px);
+
+      line-height: 0.98;
+
+      letter-spacing: -0.065em;
+
+      margin:
+        22px 0
+        28px;
+
+      max-width: 850px;
+    }
+
+    .hero-text {
+      max-width: 720px;
+
+      font-size: 21px;
+
+      color: var(--muted);
+
+      margin-bottom: 35px;
+    }
+
+    .buttons {
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+
+      align-items: center;
+      justify-content: center;
+
+      padding:
+        13px 20px;
+
+      border-radius: 10px;
+
+      border:
+        1px solid var(--border);
+
+      background:
+        rgba(255,255,255,0.055);
+
+      font-size: 14px;
+
+      font-weight: 750;
+
+      transition:
+        transform 0.2s,
+        background 0.2s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+    }
+
+    .button.primary {
+      background: var(--green);
+
+      border-color: var(--green);
+
+      color: #06131a;
+    }
+
+    /* ---------------- HERO VISUAL ---------------- */
+
+    .hero-visual {
+      height: 430px;
+
+      display: grid;
+
+      place-items: center;
+
+      position: relative;
+    }
+
+    .orb {
+      width: 300px;
+      height: 300px;
+
+      border-radius: 50%;
+
+      border:
+        1px solid
+        rgba(101,230,189,0.38);
+
+      box-shadow:
+        0 0 0 35px
+        rgba(101,230,189,0.025),
+
+        0 0 0 75px
+        rgba(101,230,189,0.018),
+
+        0 0 90px
+        rgba(101,230,189,0.12);
+
+      position: relative;
+    }
+
+    .orb::before {
+      content: "";
+
+      position: absolute;
+
+      inset: 48px;
+
+      border-radius: 50%;
+
+      border:
+        1px solid
+        rgba(125,211,252,0.35);
+    }
+
+    .orb::after {
+      content: "";
+
+      position: absolute;
+
+      inset: 105px;
+
+      border-radius: 50%;
+
+      background:
+        radial-gradient(
+          circle,
+          rgba(101,230,189,0.35),
+          rgba(101,230,189,0.02) 70%
+        );
+
+      border:
+        1px solid
+        rgba(101,230,189,0.6);
+    }
+
+    .signal {
+      position: absolute;
+
+      width: 100%;
+
+      height: 1px;
+
+      top: 50%;
+
+      background:
+        linear-gradient(
+          90deg,
+          transparent,
+          rgba(101,230,189,0.8),
+          transparent
+        );
+    }
+
+    .node {
+      position: absolute;
+
+      width: 12px;
+      height: 12px;
+
+      border-radius: 50%;
+
+      background: var(--green);
+
+      box-shadow:
+        0 0 20px
+        rgba(101,230,189,0.8);
+    }
+
+    .node-1 {
+      top: 12%;
+      left: 30%;
+    }
+
+    .node-2 {
+      top: 25%;
+      right: 10%;
+    }
+
+    .node-3 {
+      bottom: 15%;
+      left: 17%;
+    }
+
+    .node-4 {
+      bottom: 8%;
+      right: 27%;
+    }
+
+    /* ---------------- SECTIONS ---------------- */
+
+    section {
+      padding: 105px 0;
+
+      border-top:
+        1px solid
+        rgba(255,255,255,0.07);
+    }
+
+    .section-label {
+      color: var(--green);
+
+      font-size: 12px;
+
+      font-weight: 800;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.14em;
+
+      margin-bottom: 15px;
+    }
+
+    h2 {
+      font-size:
+        clamp(36px, 5vw, 58px);
+
+      line-height: 1.04;
+
+      letter-spacing: -0.045em;
+
+      margin:
+        0 0
+        20px;
+
+      max-width: 850px;
+    }
+
+    .lead {
+      max-width: 780px;
+
+      color: var(--muted);
+
+      font-size: 19px;
+    }
+
+    /* ---------------- CARDS ---------------- */
+
+    .grid {
+      display: grid;
+
+      grid-template-columns:
+        repeat(3, 1fr);
+
+      gap: 18px;
+
+      margin-top: 45px;
+    }
+
+    .card {
+      padding: 28px;
+
+      border-radius: 18px;
+
+      background: var(--card);
+
+      border:
+        1px solid
+        var(--border);
+    }
+
+    .number {
+      color: var(--green);
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      letter-spacing: 0.12em;
+
+      margin-bottom: 22px;
+    }
+
+    .card h3 {
+      margin: 0 0 10px;
+
+      font-size: 20px;
+
+      letter-spacing: -0.02em;
+    }
+
+    .card p {
+      margin: 0;
+
+      color: var(--muted);
+
+      font-size: 15px;
+    }
+
+    /* ---------------- ARCHITECTURE ---------------- */
+
+    .architecture {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 12px;
+
+      margin-top: 50px;
+    }
+
+    .step {
+      min-height: 165px;
+
+      padding: 25px 20px;
+
+      border-radius: 16px;
+
+      border:
+        1px solid
+        var(--border);
+
+      background:
+        linear-gradient(
+          145deg,
+          rgba(255,255,255,0.07),
+          rgba(255,255,255,0.025)
+        );
+    }
+
+    .step strong {
+      display: block;
+
+      font-size: 19px;
+
+      margin-bottom: 8px;
+    }
+
+    .step span {
+      color: var(--muted);
+
+      font-size: 14px;
+    }
+
+    /* ---------------- TECHNOLOGY ---------------- */
+
+    .technology-note {
+      margin-top: 45px;
+
+      padding: 35px;
+
+      border-radius: 20px;
+
+      border:
+        1px solid
+        rgba(101,230,189,0.22);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(101,230,189,0.08),
+          rgba(255,255,255,0.035)
+        );
+    }
+
+    .technology-note strong {
+      font-size: 23px;
+    }
+
+    .technology-note p {
+      max-width: 800px;
+
+      color: var(--muted);
+
+      margin-bottom: 0;
+    }
+
+    /* ---------------- APPLICATIONS ---------------- */
+
+    .applications {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 18px;
+
+      margin-top: 45px;
+    }
+
+    .application {
+      padding: 34px;
+
+      border-radius: 18px;
+
+      border:
+        1px solid
+        var(--border);
+
+      background:
+        rgba(255,255,255,0.045);
+    }
+
+    .tag {
+      color: var(--blue);
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.12em;
+    }
+
+    .application h3 {
+      font-size: 27px;
+
+      margin:
+        10px 0;
+    }
+
+    .application p {
+      color: var(--muted);
+
+      margin: 0;
+    }
+
+    /* ---------------- STAGE ---------------- */
+
+    .stage {
+      margin-top: 45px;
+
+      padding: 40px;
+
+      border-radius: 20px;
+
+      border:
+        1px solid
+        rgba(101,230,189,0.22);
+
+      background:
+        linear-gradient(
+          135deg,
+          rgba(101,230,189,0.08),
+          rgba(255,255,255,0.035)
+        );
+    }
+
+    .stage strong {
+      font-size: 24px;
+    }
+
+    .stage p {
+      max-width: 800px;
+
+      color: var(--muted);
+
+      margin-bottom: 0;
+    }
+
+    /* ---------------- VISION ---------------- */
+
+    .vision {
+      padding:
+        130px 0;
+    }
+
+    .vision-text {
+      font-size:
+        clamp(35px, 5vw, 65px);
+
+      line-height: 1.08;
+
+      letter-spacing: -0.05em;
+
+      max-width: 1000px;
+    }
+
+    .vision-text span {
+      color: var(--green);
+    }
+
+    /* ---------------- TEAM ---------------- */
+
+    .team {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 18px;
+
+      margin-top: 45px;
+    }
+
+    /* ---------------- FOOTER ---------------- */
+
+    footer {
+      border-top:
+        1px solid
+        rgba(255,255,255,0.07);
+
+      padding:
+        35px 0
+        45px;
+
+      color: #788799;
+
+      font-size: 13px;
+    }
+
+    .footer-inner {
+      display: flex;
+
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    /* ---------------- MOBILE ---------------- */
+
+    @media (max-width: 850px) {
+
+      .hero {
+        grid-template-columns: 1fr;
+
+        padding-top: 70px;
+      }
+
+      .hero-visual {
+        height: 330px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .architecture {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+      .applications {
+        grid-template-columns: 1fr;
+      }
+
+      .team {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        display: none;
+      }
+    }
+
+    @media (max-width: 520px) {
+
+      .container {
+        width:
+          calc(100% - 28px);
+      }
+
+      h1 {
+        font-size: 48px;
+      }
+
+      .architecture {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        transform: scale(0.85);
+      }
+
+      section {
+        padding: 75px 0;
+      }
+
+      .vision {
+        padding: 90px 0;
+      }
+
+      .footer-inner {
+        flex-direction: column;
+      }
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+
+  <!-- NAVIGATION -->
+
+  <nav>
+
+    <div class="container nav-inner">
+
+      <a href="#" class="logo">
+        Safe<span>Node</span>
+      </a>
+
+      <div class="nav-links">
+
+        <a href="#problem">
+          Problem
+        </a>
+
+        <a href="#approach">
+          Approach
+        </a>
+
+        <a href="#technology">
+          Technology
+        </a>
+
+        <a href="#applications">
+          Applications
+        </a>
+
+        <a href="#stage">
+          Stage
+        </a>
+
+      </div>
+
+    </div>
+
+  </nav>
+
+
+
+  <main>
+
+
+    <!-- HERO -->
+
+    <header class="container hero">
+
+      <div>
+
+        <div class="eyebrow">
+
+          <span class="dot"></span>
+
+          Early-stage deep tech
+
+        </div>
+
+
+        <h1>
+          Safety for the moments when people cannot ask for help.
+        </h1>
+
+
+        <p class="hero-text">
+
+          SafeNode is developing hardware-based technology for emergency
+          situations where a person may be unable to call, reach a phone,
+          or manually initiate an alert.
+
+        </p>
+
+
+        <div class="buttons">
+
+          <a
+            class="button primary"
+            href="#technology"
+          >
+            Explore the technology
+          </a>
+
+
+          <a
+            class="button"
+            href="#stage"
+          >
+            Current stage
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <!-- ABSTRACT HARDWARE / NETWORK VISUAL -->
+
+      <div
+        class="hero-visual"
+        aria-hidden="true"
+      >
+
+        <div class="orb">
+
+          <div class="signal"></div>
+
+          <div class="node node-1"></div>
+
+          <div class="node node-2"></div>
+
+          <div class="node node-3"></div>
+
+          <div class="node node-4"></div>
+
+        </div>
+
+      </div>
+
+    </header>
+
+
+
+    <!-- PROBLEM -->
+
+    <section id="problem">
+
+      <div class="container">
+
+        <div class="section-label">
+          01 / The Problem
+        </div>
+
+
+        <h2>
+          What happens when a person cannot call for help?
+        </h2>
+
+
+        <p class="lead">
+
+          Many emergency systems assume that a person can recognize
+          the situation, reach a device, and actively trigger an alert.
+          Some emergencies do not allow this.
+
+        </p>
+
+
+        <div class="grid">
+
+
+          <div class="card">
+
+            <div class="number">
+              01
+            </div>
+
+            <h3>
+              Unable to react
+            </h3>
+
+            <p>
+
+              A person may be unconscious, immobilized, injured,
+              or otherwise unable to interact with a phone or SOS button.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="card">
+
+            <div class="number">
+              02
+            </div>
+
+            <h3>
+              Working alone
+            </h3>
+
+            <p>
+
+              Lone workers and people in isolated environments may face
+              emergencies without immediate assistance nearby.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="card">
+
+            <div class="number">
+              03
+            </div>
+
+            <h3>
+              Communication gaps
+            </h3>
+
+            <p>
+
+              Conventional emergency workflows can depend on a single
+              device, network, or person initiating the request for help.
+
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- APPROACH -->
+
+    <section id="approach">
+
+      <div class="container">
+
+        <div class="section-label">
+          02 / Our Approach
+        </div>
+
+
+        <h2>
+          From passive alerts to intelligent physical safety.
+        </h2>
+
+
+        <p class="lead">
+
+          SafeNode explores how sensing, embedded intelligence and
+          resilient communication can work together to support
+          emergency response.
+
+        </p>
+
+
+        <div class="architecture">
+
+
+          <div class="step">
+
+            <div class="number">
+              01
+            </div>
+
+            <strong>
+              Sense
+            </strong>
+
+            <span>
+              Capture relevant physical and environmental signals.
+            </span>
+
+          </div>
+
+
+
+          <div class="step">
+
+            <div class="number">
+              02
+            </div>
+
+            <strong>
+              Interpret
+            </strong>
+
+            <span>
+              Identify potentially critical events and reduce false alarms.
+            </span>
+
+          </div>
+
+
+
+          <div class="step">
+
+            <div class="number">
+              03
+            </div>
+
+            <strong>
+              Connect
+            </strong>
+
+            <span>
+              Explore reliable ways to transmit an emergency signal.
+            </span>
+
+          </div>
+
+
+
+          <div class="step">
+
+            <div class="number">
+              04
+            </div>
+
+            <strong>
+              Respond
+            </strong>
+
+            <span>
+              Provide appropriate local or remote intervention.
+            </span>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- TECHNOLOGY -->
+
+    <section id="technology">
+
+      <div class="container">
+
+        <div class="section-label">
+          03 / Technology
+        </div>
+
+
+        <h2>
+          Hardware-first. Built for the physical world.
+        </h2>
+
+
+        <p class="lead">
+
+          The final architecture is being validated through technical
+          experimentation. Potential building blocks include physical
+          sensing, embedded processing and resilient communication.
+
+        </p>
+
+
+        <div class="grid">
+
+
+          <div class="card">
+
+            <h3>
+              Physical sensing
+            </h3>
+
+            <p>
+
+              Motion and other contextual signals that may help
+              characterize abnormal events.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="card">
+
+            <h3>
+              Embedded intelligence
+            </h3>
+
+            <p>
+
+              Local processing and event detection designed to operate
+              close to the physical environment.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="card">
+
+            <h3>
+              Resilient communication
+            </h3>
+
+            <p>
+
+              Investigation of device-to-device and other communication
+              approaches for emergency signaling.
+
+            </p>
+
+          </div>
+
+
+        </div>
+
+
+        <div class="technology-note">
+
+          <strong>
+            The architecture is not fixed yet.
+          </strong>
+
+          <p>
+
+            We are deliberately validating the technical approach before
+            committing to a final device, communication protocol, or form
+            factor. The goal is to build the simplest system that can
+            demonstrate reliable real-world value.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- APPLICATIONS -->
+
+    <section id="applications">
+
+      <div class="container">
+
+        <div class="section-label">
+          04 / Applications
+        </div>
+
+
+        <h2>
+          One technology. Multiple safety environments.
+        </h2>
+
+
+        <p class="lead">
+
+          We are starting with high-value emergency scenarios and will
+          validate where the technology creates the strongest practical
+          benefit.
+
+        </p>
+
+
+        <div class="applications">
+
+
+          <div class="application">
+
+            <div class="tag">
+              Initial exploration
+            </div>
+
+            <h3>
+              Personal Safety
+            </h3>
+
+            <p>
+
+              Emergency support for people who may be alone or unable
+              to manually request assistance.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="application">
+
+            <div class="tag">
+              Expansion
+            </div>
+
+            <h3>
+              Lone Workers
+            </h3>
+
+            <p>
+
+              Safety infrastructure for employees working without
+              immediate access to colleagues.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="application">
+
+            <div class="tag">
+              Future
+            </div>
+
+            <h3>
+              Construction & Logistics
+            </h3>
+
+            <p>
+
+              Potential applications in environments where physical work,
+              isolation and emergency response are critical.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="application">
+
+            <div class="tag">
+              Future
+            </div>
+
+            <h3>
+              Industrial Safety
+            </h3>
+
+            <p>
+
+              Exploring how intelligent physical safety systems could
+              support industrial personnel and existing safety infrastructure.
+
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- CURRENT STAGE -->
+
+    <section id="stage">
+
+      <div class="container">
+
+        <div class="section-label">
+          05 / Current Stage
+        </div>
+
+
+        <h2>
+          Research first. Evidence before scale.
+        </h2>
+
+
+        <p class="lead">
+
+          SafeNode is an early-stage project. We are validating the problem,
+          technical feasibility, communication architecture and appropriate
+          physical form factor before committing to a final product.
+
+        </p>
+
+
+        <div class="technology-note">
+
+          <strong>
+            Current focus: Technical PoC + real-world validation
+          </strong>
+
+          <p>
+
+            The next step is to build small, testable prototypes,
+            evaluate emergency scenarios under controlled conditions,
+            and use the resulting evidence to define the product architecture.
+
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- VISION -->
+
+    <section class="vision">
+
+      <div class="container">
+
+        <div class="section-label">
+          06 / Vision
+        </div>
+
+
+        <div class="vision-text">
+
+          Make emergency response
+          <span>
+            less dependent on human reaction.
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- TEAM -->
+
+    <section id="team">
+
+      <div class="container">
+
+        <div class="section-label">
+          07 / Team
+        </div>
+
+
+        <h2>
+          AI, data and engineering — working toward physical intelligence.
+        </h2>
+
+
+        <div class="team">
+
+
+          <div class="card">
+
+            <div class="number">
+              FOUNDING TEAM
+            </div>
+
+            <h3>
+              AI / Data / Product
+            </h3>
+
+            <p>
+
+              Background in IT, artificial intelligence, data science
+              and product development.
+
+            </p>
+
+          </div>
+
+
+
+          <div class="card">
+
+            <div class="number">
+              FOUNDING TEAM
+            </div>
+
+            <h3>
+              Engineering / Construction
+            </h3>
+
+            <p>
+
+              Engineering and construction expertise supporting physical
+              product development and real-world validation.
+
+            </p>
+
+          </div>
+
+
+        </div>
+
+
+        <div class="technology-note">
+
+          <strong>
+            Building the first prototype.
+          </strong>
+
+          <p>
+
+            SafeNode is currently at the early validation stage.
+            We are looking for technical, industrial and research
+            partners to help test the first hardware concepts.
+
+          </p>
+
+          <!--
+            IMPORTANT:
+            Replace YOUR_EMAIL@example.com with your real email.
+          -->
+
+          <div style="margin-top: 22px;">
+
+            <a
+              class="button primary"
+              href="mailto:marzhannurbakyt@gmail.com"
+            >
+              Contact SafeNode
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+  </main>
+
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <div class="container footer-inner">
+
+      <div>
+        © 2026 SafeNode
+      </div>
+
+      <div>
+        Kazakhstan · Early-stage hardware / deep tech
+      </div>
+
+    </div>
+
+  </footer>
+
+
+</body>
+</html>
